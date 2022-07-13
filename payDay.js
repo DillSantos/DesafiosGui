@@ -1,15 +1,41 @@
-//INFORME NA VARIAVEL 'SAQUE', O VALOR QUE DESEJA SACAR
-var saque = 60;
+let saque = 24;
 
-//POSSIVEIS CEDULAS DISPONIVEIS PARA OPERAÇÃO
-var cedulas = [100, 50, 20, 10, 5, 2];
-console.log(`PARA SAQUE DE R$${saque},00`);
+let _notas = [100, 50, 20, 10, 5, 2];
 
-for (i = 0; i < cedulas.length; i++) {//FOR PERCORRE O ARRAY DE CEDULAS
-    var conta1 = parseInt([saque / cedulas[i]]);
-    if (conta1 % cedulas[i] > 0) {
-        console.log(`OPÇÕES DE CEDULAS PARA OPERAÇÃO : ${conta1} DE R$${cedulas[i]},00`)
+let saqAuxiliar = saque;
+
+var texto = " "
+
+for (opcao of ["A", "B"]) {
+
+    if (opcao === "B") {
+
+        _notas = [2, 50, 100, 5, 20, 10];
+        saque = saqAuxiliar;
+        texto = " "
     }
+
+    for (i = 0; i < _notas.length; i++) {
+        if (saque % _notas[i] === saque) {
+            continue;
+        }
+
+        qtdNotas = parseInt(saque / _notas[i]);
+        saque -= _notas[i] * qtdNotas;
+        texto += `${qtdNotas} X R$${_notas[i]}, 00`
+    }
+
+    if (saqAuxiliar > 0) {
+        try {
+
+        } catch (error) {
+            'VALOR PARA SAQUE INVALIDO'
+
+        }
+    }
+    console.log(`OPÇÃO ${opcao}`);
+    console.log(texto)
+    console.log()
 }
 
 
