@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAIXA ELETRONICO 1.0</title>
+</head>
+
+<body style="text-align: center;margin-top: 30px;">
+    <h1>CAIXA ELETRONICO 1.0</h1>
+    <div>
+        <input type="text" placeholder="Informe o valor do saque" min="100" id="money">
+        <button onclick="functionAtm()">SAQUE</button>
+    </div>
+    <div id="resultado"></div>
+
+    <script>
+        function shuffle(o) {
+            for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
+        }
+        function functionAtm() {
+            var _saque = document.getElementById('money').value;
+            var text = document.getElementById('resultado').innerHTML = ' ';
+            var _cedulas = [100, 50, 20, 10, 5, 2];
+            var _auxSaque = _saque;
+
+            for (opcao of ["A", "B"]) {
+
+
+                if (opcao == "B") {
+
+                    shuffle(_cedulas);
+
+                    _saque = _auxSaque;
+
+                    text = "";
+                }
+
+                for (var cedula of _cedulas) {
+
+
+                    if (_saque % cedula == _saque) {
+                        continue;
+                    }
+
+                    _qtdNotas = parseInt(_saque / cedula);
+
+                    _saque -= cedula * _qtdNotas;
+                    text += document.getElementById('resultado').innerHTML += ' <div style="margin-top :10px;"><strong> ' + opcao + '</br >' + _qtdNotas + ' NOTAS DE ' + cedula + ',00</strong ></br ></div > ';
+                } if (_saque > 0) {
+                    text += document.getElementById('resultado').innerHTML += ' <div style="margin-top :10px;"><strong> ' + " A DIFERNÇA RETORNOU PARA CONTA " + '</strong ></br ></div > ';
+                    break;
+                }
+
+
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
